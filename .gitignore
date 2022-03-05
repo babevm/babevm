@@ -1,0 +1,6 @@
+cmake-build-*
+out
+.vs
+.idea
+.idea.*
+.DS_Store

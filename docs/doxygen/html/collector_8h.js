@@ -1,0 +1,28 @@
+var collector_8h =
+[
+    [ "BVM_ALLOC_MAX_OBJECT", "collector_8h.html#a5f1d23aa480a6bf0cdf7b623862aabf3", null ],
+    [ "BVM_ALLOC_MAX_TYPE", "collector_8h.html#aacaae0ccb277baa13d4db1aac3de2b8f", null ],
+    [ "BVM_ALLOC_MIN_TYPE", "collector_8h.html#a72869beb086c3cf56b53fff97dd8d1b4", null ],
+    [ "BVM_ALLOC_TYPE_ARRAY_CLAZZ", "collector_8h.html#a874e41fc7d3898e8053c28ef8bb6cd7d", null ],
+    [ "BVM_ALLOC_TYPE_ARRAY_OF_OBJECT", "collector_8h.html#a360e1e3a66cf8530a523aa42aeeb3103", null ],
+    [ "BVM_ALLOC_TYPE_ARRAY_OF_PRIMITIVE", "collector_8h.html#a2e744b6d54dc73ddd35401c87065ad7e", null ],
+    [ "BVM_ALLOC_TYPE_DATA", "collector_8h.html#a33c0097ded07710d1ea7f0e22e89af06", null ],
+    [ "BVM_ALLOC_TYPE_INSTANCE_CLAZZ", "collector_8h.html#a194f8b8615ccaa74e28b209a96fe8d05", null ],
+    [ "BVM_ALLOC_TYPE_OBJECT", "collector_8h.html#abffe02bbdbedac03aa667ce61a5f1b2f", null ],
+    [ "BVM_ALLOC_TYPE_PRIMITIVE_CLAZZ", "collector_8h.html#a8742e348b3a2f9554a45103434437a0c", null ],
+    [ "BVM_ALLOC_TYPE_STATIC", "collector_8h.html#a18a8e77daa8a6efa343cf1ad8c49b696", null ],
+    [ "BVM_ALLOC_TYPE_STRING", "collector_8h.html#a8537b18ce9aeffd4ef81aa8ec38aeeaf", null ],
+    [ "BVM_ALLOC_TYPE_WEAK_REFERENCE", "collector_8h.html#aecb4bb66a3da89b4c2572919fad054b7", null ],
+    [ "BVM_BEGIN_TRANSIENT_BLOCK", "collector_8h.html#a7b159468319fec5cb4965ab5f0435acb", null ],
+    [ "BVM_END_TRANSIENT_BLOCK", "collector_8h.html#a6c1d6c08dc0ecb98babacb93416343b7", null ],
+    [ "BVM_MAKE_PERMANENT_ROOT", "collector_8h.html#add1814d3fa23ba89ad3233ebfb15de19", null ],
+    [ "BVM_MAKE_TRANSIENT_ROOT", "collector_8h.html#a14504e728cc933649537afae1e6d7736", null ],
+    [ "bvm_debug_clear_heap", "collector_8h.html#a6e85ac2fafdce83f500320e4c8cff220", null ],
+    [ "bvm_gc", "collector_8h.html#a7d0566ef5a051000ecf595d9e7a4f9aa", null ],
+    [ "bvm_gl_gc_permanent_roots", "collector_8h.html#a7f645f124f36431c9b2096a3f5f0a6b8", null ],
+    [ "bvm_gl_gc_permanent_roots_depth", "collector_8h.html#a275bea922b95075ad41806d5d7f6f3a9", null ],
+    [ "bvm_gl_gc_permanent_roots_top", "collector_8h.html#ac5129f1bc5fb7865f91bcb9e93da77c9", null ],
+    [ "bvm_gl_gc_transient_roots", "collector_8h.html#af4b49d12a9eed2d3b462aa3a1dbc445e", null ],
+    [ "bvm_gl_gc_transient_roots_depth", "collector_8h.html#a0274ebf090cc66acc0548b69ef7aa7a1", null ],
+    [ "bvm_gl_gc_transient_roots_top", "collector_8h.html#a3f7924db7f44f97f354770dbf8d7e629", null ]
+];

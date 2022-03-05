@@ -1,0 +1,27 @@
+var frame_8h =
+[
+    [ "_bvmstacksegmentstruct", "struct__bvmstacksegmentstruct.html", "struct__bvmstacksegmentstruct" ],
+    [ "BVM_FRAME_LOCALS_OFFSET", "frame_8h.html#a1193ae866233eebd45b6e74c790024c8", null ],
+    [ "BVM_FRAME_METHOD_OFFSET", "frame_8h.html#ad2be76799bcccc56ec711b7b0a374c23", null ],
+    [ "BVM_FRAME_PC_OFFSET", "frame_8h.html#a9e8c067616099787e4557715e9829c0a", null ],
+    [ "BVM_FRAME_PPC_OFFSET", "frame_8h.html#aad53241d7c638e81d64e8a4dd7d0b747", null ],
+    [ "BVM_FRAME_SP_OFFSET", "frame_8h.html#a665ab6c4f9152e48e0996402df520ac6", null ],
+    [ "BVM_FRAME_STACK_OFFSET", "frame_8h.html#ab80286c408990410ae889f59cf5a450a", null ],
+    [ "BVM_FRAME_SYNCOBJ_OFFSET", "frame_8h.html#a78d3e6649f9d0d6dd27f31d9b364125c", null ],
+    [ "BVM_STACK_ExecMethodSyncObject", "frame_8h.html#ad190649405b27f9c24190c4aefd3c39a", null ],
+    [ "BVM_STACK_GetCallingClass", "frame_8h.html#a9a87f3a97275b28bc8798f97aa111b23", null ],
+    [ "BVM_STACK_RETURN_FRAME_SIZE", "frame_8h.html#a1212b13b700058acaa8c6f70f42b55b9", null ],
+    [ "bvm_stacksegment_t", "frame_8h.html#ad8f1aec298f4d3ca85ed2c3ee1652df0", null ],
+    [ "bvm_frame_pop", "frame_8h.html#a59a73836fca79224daf5df7f25fe303c", null ],
+    [ "bvm_frame_push", "frame_8h.html#ad985d2a41f37b8a213c4a7b69f914539", null ],
+    [ "bvm_gl_rx_clazz", "frame_8h.html#a7f9638c23de2134671b0151af069f81f", null ],
+    [ "bvm_gl_rx_locals", "frame_8h.html#afaa4af471f6c752dc969f68d0467e5b7", null ],
+    [ "bvm_gl_rx_method", "frame_8h.html#adbcc3fc8139c7e0462a06718f1ff51ae", null ],
+    [ "bvm_gl_rx_pc", "frame_8h.html#a287299fc2a57a87ac7bbabf9e6bf1911", null ],
+    [ "bvm_gl_rx_ppc", "frame_8h.html#acb823e88beacd050ec03f58508296656", null ],
+    [ "bvm_gl_rx_sp", "frame_8h.html#aa53bf0d47f7715b21bb76d05189f70a1", null ],
+    [ "bvm_gl_rx_stack", "frame_8h.html#a1ef5174928a07c65d1c37d73ce547dcb", null ],
+    [ "BVM_METHOD_CALLBACKWEDGE", "frame_8h.html#aec0ea27394ae025475525744238d2285", null ],
+    [ "BVM_METHOD_NOOP", "frame_8h.html#a47641d8c6dac33e0573d275d594c8def", null ],
+    [ "BVM_METHOD_NOOP_RET", "frame_8h.html#a56c1966c7a8363a59bd14d38fb1471ca", null ]
+];

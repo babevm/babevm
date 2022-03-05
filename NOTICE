@@ -1,0 +1,15 @@
+Babe VM
+Copyright 2022 Montera Pty Ltd.
+
+This product includes software developed by Montera Pty Ltd, Australia.
+
+This product includes code based on examples in: "C Interfaces and Implementations: Techniques for
+Creating Reusable Software" (Addison-Wesley * Professional Computing Series, 1997, ISBN 0201498413,
+ISBN-13 9780201498417).  David Hanson.  That code is MIT licenced and the MIT/copyright notice is
+retained within xp.c.  More at https://github.com/drh/cii.
+
+This product includes code from the `tint` lib at https://github.com/jibsen/tinf.  That is released
+under the zlib license as-is.
+
+
+
