@@ -1,6 +1,10 @@
 cmake-build-*
+build
 out
 .vs
 .idea
+.vscode
 .idea.*
 .DS_Store
+*.json
+*.yaml

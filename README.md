@@ -39,11 +39,13 @@ Babe is very small and is intended for small environments, though, it does not s
 * **Code/resource permissions** - A small implementation of the Java SE permissions model including `SecurityManager`, `AccessControlContext`, `ProtectionDomain`s and so on.
 * **Dynamic stacks** - the VM thread stacks grow and shrink as required - no predefined max stack height. 
 * **Remote Debugging** - running code can be debugged using a standard development IDE like Intellij or VSCode or Eclipse.  Remote debugging is supported via an implementation of the Java Debug Wire Protocol (JDWP).  Debugger support can be excluded from the build to create a smaller, faster runtime.  
-* **Documented** - the code has a extensive documentation to help developers understand how it all hangs together. The code documentation format is the standard 'doxygen' format as well as markdown overviews.
+* **Documented** - the code has extensive documentation to help developers understand how it all hangs together. The code documentation format is the standard 'doxygen' format as well as markdown overviews.
 * **Performant** - Some _very_ unscientific performance testing show it to be somewhat faster than python (circa 50% faster on a recursive Fibonacci algorithm)
 * **Embeddable** - All functions and global vars and externs etc are prefixed with `bvm_` so you'll not get any name clashes with your own code.  
 
 For more detailed documentation, check out the docs pages: [https://babevm.github.io/babevm/](https://babevm.github.io/babevm/).
+
+For getting up and going with vscode or clion, check out the [quickstart](https://babevm.github.io/babevm/quickstart)
 
 From a VM perspective, Babe is pretty complete so, perhaps do not necessarily expect this repo to be a hotbed of activity.  But, no doubt, improvements can be made.  Some notes are in the documentation.
 
