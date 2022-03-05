@@ -6,29 +6,31 @@ If you're looking to get it built, look here: [Building](./build.md).
 
 If you're looking for the code (doxygen) docs, look here: [Doxygen](./doxygen/html/index.html) 
 
+If you're looking for the runtime classes, look here: [Runtime](https://github.com/babevm/runtime)
+
 ## The project
 
 First, some notes about the actual code and project layout:
 
 * All functions, global stuff and macros are prefixed with `bvm` or `BVM`.  
-* things related to the JDWP debugging is prefixed with `bvm_d` or `BVM_D`
-* things related to platform dependant code is prefixed with `bvm_pd` or `BVM_PD` 
+* things related to JDWP debugging are prefixed with `bvm_d` or `BVM_D`
+* things related to platform dependant code are prefixed with `bvm_pd` or `BVM_PD` 
 * global vars will have `_gl_` in their name. 
 
 The layout of the project src folder is as such:
 
 * `c` folder - as you'd expect
 * `h` folder - as you'd expect
-* `platform` folder - one folder for each supported platform. Consider the `hyc_t4200` and `osx_ppc` folders pretty sketchy. The `hyc_t4200` was a test port to a rel payment device (with remote debugging), and `osx_ppc` 
+* `platform` folder - one folder for each platform. Consider the `hyc_t4200` and `osx_ppc` folders pretty sketchy. The `hyc_t4200` was a test port to a rel payment device (with remote debugging), and `osx_ppc` 
 * `thirdparty` folder - other libs (and licences) used in this build. 
 
 The platform folder is as such:
 
-* `ansi` - an ANSI C of console, memory and file handling
-* `linux` - linux specifics.  Actually, the linux impl used ANSI C stuff plus the CSB sockets impl, so very little in here apart from the specific of getting a timestamp.
+* `ansi` - an ANSI C impl of console, memory and file handling.
+* `linux` - linux specifics.  Actually, the linux port uses ANSI C stuff plus the BSD sockets impl, so very little is in here apart from the specific of getting a timestamp.
 * `osx_ppc` - config and specifics for mac OSX running powerpc (big endian) architecture.  Big endian is 'supported' but has not been exercised in a while. Refer [Endianess](./endian.md).
 * `sockets` - a BSD sockets impl for windows and linux/osx. Used as the transport for the JDWP capability.
-* `winos` - Windows specifics.  At this point, only Windows 64 bit has been well exercised.    
+* `winos` - Windows specifics.  At this point, only Windows 64 bit has been well exercised since porting to 64 bit.  
 
 The code has a lot of annotations that hopefully help devs to understand what is going on.  Sometimes the annotations also describe what the JVMS details, and the approach taken.  
 
@@ -66,7 +68,7 @@ Having said that, a VM is quite often not a simple piece of software.  In this i
 
 The VM, like all other Javas VMs, is a 'Java bytecode interpreter'.  Given the 'small device' target environment, it has to strike a balance between speed, size, and memory usage, and complexity to achieve what it does.  A key design goal was to keep the VM and core classes to about 300k total and yet provide as complete an implementation of the JVMS as possible .  Ultimately, software this small is a collection of compromises made to balance each of the competing concerns above.  Hopefully, the documentation helps.
 
-The code documentation does not replicate the JVMS document and assumes the developer has given it soe attention at least.  Though, the annotations do provide some insight into the JVMS why things are the way they are.
+The code documentation does not replicate the JVMS document and assumes the developer has given it some attention at least.  Though, the annotations do provide some insight into the JVMS and why things are the way they are.
 
 Each of the following links will provide more information on how some aspect of the VM works, and from there will also link to relevant source code and 'doxygen' pages.
 
@@ -92,12 +94,13 @@ In no particular order:
 
 A few quick thoughts on things that can be better, should be done, or could just be done anyways:
 
-* the maximum permissible heap size could easily be extended to a multiple or 4 or 8 on what it is now.  Presently, a memory chunk size is expressed in bytes, but this could fairly easily be changed to a multiple of bytes.
-* some additional JDWP debugger commands could be supported with a little effort.
-* The heap is not segmented in any way (to keep it simple), but, a 'generational' memory scheme could be implemented to reduce the effort for each GC cycle.
-* Classloaders could feed the VM the raw bytes of classes and not rely solely on the VM finding classes on the classpath.
+* the maximum permissible heap size could easily be extended to a multiple or 4, 8 or 16 on what it is now.  Presently, a memory chunk size is expressed in bytes, but this could fairly easily be changed to be a multiple of bytes. 
+* some additional JDWP debugger commands could likely be supported with a little effort.
+* the heap is not segmented in any way (to keep it simple), but, a 'generational' memory scheme could be implemented to reduce the effort for many GC cycles.  Additionally, a tri colour marking scheme is already in use so soe groundwork for 'incremental' collection has also been laid. 
+* class loaders could feed the VM the raw bytes of classes and not rely solely on the VM finding classes on the classpath.  The permissions system can control whose is allowed to do so.
 * parsing doubles/floats from Strings is not yet implemented.
-* not all relevant runtime classes use SecurityManager to protect themselves.
+* not all relevant runtime classes use SecurityManager to protect themselves as yet.
 * a default policy loader implementation could be supplied. 
+* exposing file handling to at the Java layer would likely be handy 
 
 
