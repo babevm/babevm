@@ -2,11 +2,15 @@
 
 Here, you'll find explanations inner workings of the VM with links to relevant sources files and other documentation.
 
-If you're looking to get it built, look here: [Building](./build.md).
+If you're looking for the source, look here: [babevm github](https://github.com/babevm/babevm).
+
+If you're looking to get up and going, look here: [Quickstart](./quickstart.md).
+
+For other build-related info, look here: [Building](./build.md).
 
 If you're looking for the code (doxygen) docs, look here: [Doxygen](./doxygen/html/index.html) 
 
-If you're looking for the runtime classes, look here: [Runtime](https://github.com/babevm/runtime)
+If you're looking for the runtime classes, look over here: [Runtime](https://github.com/babevm/runtime)
 
 ## The project
 
@@ -50,7 +54,7 @@ When running the VM, the absolute path to the jar or classes folder is required 
 
 Babe VM and the core classes are distributed as source.  At this time there are no pre-built binaries.  Both the VM code and the core runtime classes ('rt') code are required to get up and going.
 
-Have a look at * [Building](./build.md) for more detail.
+Have a look at [Building](./build.md) for more detail.
 
 ## Some FAQ ...
 
@@ -58,7 +62,7 @@ Here  ... [FAQ](./faq.md)
 
 ## How stuff works
 
-The Java Virtual Machine Specification is an astounding piece of work.  From 1996 to now, the same fundamentals apply to the latest (quite incredible) JVMs - just look at the performance of OpenJDK.  Quite incredible. Maybe just one (two?) new opcodes have been added in 25 years.
+The Java Virtual Machine Specification is an astounding piece of work.  From 1996 to now, the same fundamentals apply to the latest JVMs - just look at the performance of OpenJDK and other modern JVMs - running on largely the same spec as bnack then.  Quite incredible. Maybe just one (two?) new opcodes have been added in 25 years.
 
 It has a lot to teach us.
 

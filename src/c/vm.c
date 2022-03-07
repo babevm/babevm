@@ -1376,7 +1376,7 @@ static void parse_command_line(int *ac, char ***av) {
 }
 
 /**
- * Reads the command lines system properties (those that begin with -D) into the first field on the runtime System
+ * Reads the command line system properties (those that begin with -D) into the first field on the runtime System
  * class ('_cmdLine').  The System class uses that to expose system properties as a Map.
  */
 static void set_system_class_properties() {
@@ -1390,14 +1390,14 @@ static void set_system_class_properties() {
 
 		BVM_BEGIN_TRANSIENT_BLOCK {
 
-			/* Get the system clazz */
+			/* Get the System clazz */
 			temp_utfstring = bvm_str_wrap_utfstring("java/lang/System");
 			clazz = (bvm_instance_clazz_t *) bvm_clazz_get( (bvm_classloader_obj_t *) BVM_SYSTEM_CLASSLOADER_OBJ, &temp_utfstring);
 
-			/* create an array of string objects */
+			/* create an array of string objects to hold properties */
 			args_array_obj = bvm_object_alloc_array_reference(cmdline_nr_system_properties, (bvm_clazz_t *) BVM_STRING_CLAZZ);
 
-			/* make sure our new array does not disappear if following allocations cause a GC */
+			/* make sure our new array does not disappear if any following allocations cause a GC */
 			BVM_MAKE_TRANSIENT_ROOT(args_array_obj);
 
 			/* set the first field '_cmdLine' of the System class to the new String object array - it will be
@@ -1438,9 +1438,6 @@ static void sanity_check_sizes() {
     if (sizeof(bvm_native_long_t) != sizeof(void *)) bvm_pd_system_exit(BVM_FATAL_ERR_INCORRECT_NATIVE_LONG_SIZE);
     if (sizeof(bvm_native_ulong_t) != sizeof(void *)) bvm_pd_system_exit(BVM_FATAL_ERR_INCORRECT_NATIVE_LONG_SIZE);
 
-//    if (sizeof(bvm_native_long_t) != sizeof(void *)) bvm_pd_system_exit(BVM_FATAL_ERR_INCORRECT_NATIVE_LONG_SIZE);
-//    if (sizeof(bvm_native_ulong_t) != sizeof(void *)) bvm_pd_system_exit(BVM_FATAL_ERR_INCORRECT_NATIVE_LONG_SIZE);
-
     if (sizeof(bvm_cell_t) != sizeof(size_t)) bvm_pd_system_exit(BVM_FATAL_ERR_INCORRECT_CELL_SIZE);
 }
 
@@ -1455,7 +1452,7 @@ static void sanity_check_sizes() {
  * from the command line.  They are:
  *
  * @li \c -Xbootclasspath : the system classpath.  This is a path to the runtime classes (rt.jar) used by the VM.
- * @li \c -cp / -classpath : the user classpath.  This is a path to the classes used by the running application.
+ * @li \c -cp or \c -classpath : the user classpath.  This is a path to the classes used by the running application.
  * @li \c -home : a home directory considered as a root for file opening.
  * @li \c -heap : the size of the heap.  Kilobytes can also be expressed by appending 'k' to the given
  * number ('K' will also do).  For megabytes append either an 'm' or an 'M'.
@@ -1525,7 +1522,8 @@ int bvm_main(int argc, char *argv[]) {
 	sanity_check_sizes();
 
 	/* parse and process the command line arguments.  The addresses of ac/av are passed in by reference
-	 * and after function execution ac > 0 and av == java main class name. */
+	 * and after function execution ac > 0 and av == java main class name + args to the Java main(args[]) 
+	 method. */
 	parse_command_line(&ac, &av);
 
 	BVM_TRY { /* to catch BVM_EXIT */
@@ -1559,13 +1557,13 @@ int bvm_main(int argc, char *argv[]) {
 
 				if (bvmd_is_session_open()) {
 
-					/* wait for that first command ... which will be 'sizes' */
+					/* wait for that first debugger command ... which will be 'sizes' */
 					bvmd_interact(BVMD_TIMEOUT_FOREVER);
 
-					/* send 'VM start' event */
+					/* send the debugger the 'VM start' event */
 					bvmd_event_VMStart();
 
-					/* if the start mode is to suspend everything, spin on the debugger until
+					/* if the start mode is to suspend everything, spin and wait on the debugger until
 					 * it resumes stuff ... */
 					if (bvmd_gl_suspendonstart)
 						bvmd_spin_on_debugger();
@@ -1588,10 +1586,10 @@ int bvm_main(int argc, char *argv[]) {
 #endif
 			BVM_BEGIN_TRANSIENT_BLOCK {
 
-				/* create a String[] to be used as the parameters for the main method. */
+				/* create a String[] to be used as the arguments for the main method. */
 				args_array_obj = bvm_object_alloc_array_reference(ac-1, (bvm_clazz_t *) BVM_STRING_CLAZZ);
 
-				/* make sure our new array does not disappear if following allocations cause a GC */
+				/* make sure our new array does not disappear if the following allocations cause a GC */
 				BVM_MAKE_TRANSIENT_ROOT(args_array_obj);
 
 				/* for each param create a String object and place it in the String array. */
@@ -1601,6 +1599,7 @@ int bvm_main(int argc, char *argv[]) {
 				}
 
                 // TODO: check the class file name does not already have slashes.
+
 				/* make the command line class name into an internal class name (replace dots with forward
 				 * slashes)*/
                 bvm_str_replace_char(av[0], (int) strlen(av[0]),'.','/');
@@ -1623,8 +1622,8 @@ int bvm_main(int argc, char *argv[]) {
 
 				/* push the "main" method onto the stack making sure to capture the sync object if required -
 				 * Yes, it is legal in Java to have a synchronised main method - it is just another
-				 * method like any other.  We set the return pc to the magic BVM_THREAD_KILL_PC to let us know
-				 * this is the base of the thread */
+				 * method like any other.  We set the return program counter ('pc') to the magic 
+				 * BVM_THREAD_KILL_PC to let us know this is the base of the thread */
 				bvm_frame_push(method, bvm_gl_rx_sp, bvm_gl_rx_pc, BVM_THREAD_KILL_PC, BVM_METHOD_IsSynchronized(method) ? (bvm_obj_t *) method->clazz->class_obj : NULL);
 
 				/* set the argument of "main" to our newly created String array of command
@@ -1638,14 +1637,14 @@ int bvm_main(int argc, char *argv[]) {
 				 * to be done.  */
 				bvm_clazz_initialise(clazz);
 
-				/* also, make sure the thread class is initialised before we used it - we have
+				/* also, make sure the java Thread class is initialised before we used it - we have
 				 * already instantiated one before we get the interp loop running, so put it on top
 				 * here to make sure it is correctly initialised.  Normally, class initialisation happens
 				 * as part of the interp loop - but we're not there yet, so we push it manually. */
 				bvm_clazz_initialise(BVM_THREAD_CLAZZ);
 
 				/* Set System class properties */
-                    set_system_class_properties();
+				set_system_class_properties();
 
 			} BVM_END_TRANSIENT_BLOCK
 
