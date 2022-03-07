@@ -2,7 +2,9 @@
 
 Here, you'll find explanations inner workings of the VM with links to relevant sources files and other documentation.
 
-If you're looking to get going, look here: [Quickstart](./quickstart.md).
+If you're looking for the source, look here: [babevm github](https://github.com/babevm/babevm).
+
+If you're looking to get up and going, look here: [Quickstart](./quickstart.md).
 
 For other build-related info, look here: [Building](./build.md).
 
