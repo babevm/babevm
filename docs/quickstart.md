@@ -2,7 +2,7 @@
 
 The following is to get you running and debugging the VM C code executing a `HelloWorld.java` class in either VSCode or Clion for mac.  Windows/Linux may be different.
 
-The `lib` folder in this repo has the `HelloWorld.java` class, its compiled version `HelloWorld.class`, plus the runtime libs already built as `rt-0.6.0.jar` (the version may change over time, so be sure to check exactly which version is in there).  So, we'll get things configured to run the VM code and have it look into that folder for the rt jar and java class. 
+The `lib` folder in this repo has the `HelloWorld.java` class, its compiled version `HelloWorld.class`, plus the runtime libs already built as `rt-0.6.0.jar` (the version may change over time, so be sure to check exactly which version is in there).  So, we'll get things configured to run the VM code and have it search that folder for the rt jar and java class. 
 
 ## VS Code
 
@@ -15,7 +15,7 @@ You'll need the following extensions installed:
 
 You'll also need `cmake` installed on your system.  For linux, this is likely already there, for mac visit `https://cmake.org/download/` and download and install the dmg to 'Applications'. You'll need to add `/Applications/CMake.app/Contents/bin` onto your path in your shell profile (likely `.zprofile` in your user folder).  Test it works with `cmake -version`.
 
-After that, Open the Command Palette (⇧⌘P) in vscode and run "CMake: Scan for Kits".  It should pick up the installed C compiler.   
+After that, Open the Command Palette (⇧⌘P) in vscode and run "CMake: Scan for Kits".  It should pick up the installed C compiler.
 
 For mac/linux, we'll want to be able to pass the `LINUX=ON` config to cmake, so create a new file in project root called `cmake-variants.yaml` with the following contents:
 
