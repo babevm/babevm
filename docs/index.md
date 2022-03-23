@@ -25,13 +25,13 @@ The layout of the project src folder is as such:
 
 * `c` folder - as you'd expect
 * `h` folder - as you'd expect
-* `platform` folder - one folder for each platform. Consider the `hyc_t4200` and `osx_ppc` folders pretty sketchy. The `hyc_t4200` was a test port to a rel payment device (with remote debugging), and `osx_ppc` 
+* `platform` folder - one folder for each platform. Consider the `hyc_t4200` and `osx_ppc` folders pretty sketchy. The `hyc_t4200` was a test port to a real payment device (with remote debugging), and `osx_ppc` 
 * `thirdparty` folder - other libs (and licences) used in this build. 
 
 The platform folder is as such:
 
 * `ansi` - an ANSI C impl of console, memory and file handling.
-* `linux` - linux specifics.  Actually, the linux port uses ANSI C stuff plus the BSD sockets impl, so very little is in here apart from the specific of getting a timestamp.
+* `linux` - linux specifics.  Actually, the linux port uses ANSI C stuff plus the BSD sockets impl, so very little is in here apart from the specifics of getting a timestamp.
 * `osx_ppc` - config and specifics for mac OSX running powerpc (big endian) architecture.  Big endian is 'supported' but has not been exercised in a while. Refer [Endianess](./endian.md).
 * `sockets` - a BSD sockets impl for windows and linux/osx. Used as the transport for the JDWP capability.
 * `winos` - Windows specifics.  At this point, only Windows 64 bit has been well exercised since porting to 64 bit.  
@@ -40,11 +40,11 @@ The code has a lot of annotations that hopefully help devs to understand what is
 
 ## data types
 
-ANSI C defines standard data types, but, their size is not constant between platforms.  Java requires a series of datatypes that are of a known size.  To that end, part of the platform porting process is to provide platform specific types that match the Java types.  The VM also uses those types in it own code.  You'll not see `int` or `long` types in the code but their VM / Java types.  Refer to [portability](./portability.md) for more info.
+ANSI C defines standard data types, but, their size is not constant between platforms.  Java requires a series of datatypes that are of a known size.  To that end, part of the platform porting process is to provide platform specific types that match the Java types.  The VM also uses those types in it own code.  You'll not see many `int` or `long` types in the code but their VM / Java types.  Refer to [portability](./portability.md) for more info.
 
 ## The runtime Java lib
 
-Associated with this VM code is the core runtime classes.  These are Java classes in the [https://github.com/babevm/runtime](https://github.com/babevm/runtime) repo.  Babe VM needs these classes to run.  Those classes are specific to this VM and no other.  There are many touchpoints between a VM and its runtime classes where the VM knows some stuff about the classes, and the classes know stuff about the VM - they are bound.  This is normal - even the current Java open JDK does the same - the VM and the classes work together.
+Associated with this VM code is the core runtime classes.  These are Java classes in the [https://github.com/babevm/runtime](https://github.com/babevm/runtime) repo.  Babe VM needs these classes to run.  Those classes are specific to this VM and no other.  There are many touch points between a VM and its runtime classes where the VM knows some stuff about the classes, and the classes know stuff about the VM - they are bound.  This is normal - even the current Java open JDK does the same - the VM and the classes work together.
 
 In order to be able to run this VM, the runtime ('rt') repo will need to be pulled and built (using the maven build provided in that repo).  The build produces a `rt-<version>.jar` file as well as an uncompressed folder of compiled classes.
 
@@ -62,7 +62,7 @@ Here  ... [FAQ](./faq.md)
 
 ## How stuff works
 
-The Java Virtual Machine Specification is an astounding piece of work.  From 1996 to now, the same fundamentals apply to the latest JVMs - just look at the performance of OpenJDK and other modern JVMs - running on largely the same spec as bnack then.  Quite incredible. Maybe just one (two?) new opcodes have been added in 25 years.
+The Java Virtual Machine Specification is an astounding piece of work.  From 1996 to now, the same fundamentals apply to the latest JVMs - just look at the performance of OpenJDK and other modern JVMs - running on largely the same spec as back then.  Quite incredible. Maybe just one (two?) new opcodes have been added in 25 years.
 
 It has a lot to teach us.
 
